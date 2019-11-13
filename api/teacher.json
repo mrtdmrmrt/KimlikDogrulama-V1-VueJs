@@ -1,0 +1,15 @@
+[
+    {
+        "id" : "1",
+        "name" : "Fatih",
+        "surname" : "Ozkaynak",
+        "class" : {
+            "classID" : "YMH420",
+            "classList" : {
+                "studentID" : "1",
+                "studentID" : "2",
+                "studentID" : "3"
+            }
+        }
+    }
+]

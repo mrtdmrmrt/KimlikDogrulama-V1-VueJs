@@ -1,0 +1,32 @@
+[
+    {
+        "id" : "1",
+        "userName" : "14542500",
+        "password" : "14542500",
+        "teacherID" : "1",
+        "status" : "1"
+    },
+    {
+        "id" : "2",
+        "userName" : "14542516",
+        "password" : "14542516",
+        "studentID" : "1",
+        "status" : "0"
+    },
+    {
+        "id" : "3",
+        "userName" : "14542501",
+        "password" : "14542501",
+        "studentID" : "2",
+        "status" : "0"   
+    },
+    {
+        "id" : "4",
+        "userName" : "14542502",
+        "password" : "14542502",
+        "studentID" : "3",
+        "status" : "0"   
+    }
+    
+  
+]
