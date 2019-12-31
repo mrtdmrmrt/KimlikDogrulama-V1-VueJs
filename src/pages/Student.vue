@@ -4,9 +4,9 @@
      <table class="table table-hover">
     <thead>
       <tr>
-        <th>Numarasi</th>
-        <th>Adi</th>
-        <th>Soyadi</th>
+        <th>Numarası</th>
+        <th>Adı Soyadı</th>
+         <th>Devamsızlık Gün</th>
         <th>Devam</th>
       </tr>
     </thead>
@@ -14,16 +14,18 @@
       <tr>
         <td>{{data.ogrNo}}</td>
         <td >{{data.name}}</td>
-        <td> {{data.surname}}</td>
+         <td >{{data.discontinuity}}</td>
         <td>
-            <i v-if=" data.devam == '1'" class="fas fa-check-circle"></i>
-            <i v-else class="fa fa-times-circle"></i>
+          <i v-if=" data.discontinuity >= '4'" class="fa fa-times-circle"></i>
+          <i v-else class="fas fa-check-circle"></i>
+           
         </td>
         
       </tr>
     </tbody>
   </table>
-    </div>
+   
+  </div>
 </template>
 <script>
 import {dataMixin} from "../dataMixin"
@@ -31,7 +33,7 @@ export default {
     mixins : [dataMixin],
     data(){
         return {
-            Student :[]
+            Discontinuity:[]
         }
     },
     computed : {
@@ -41,16 +43,10 @@ export default {
         }
     },
     methods : {
-        getir(){
-            console.log(this.vuexgetAuth)
-        }
+        
     },
     created (){
-        this.getStudent()
-			.then(response => {
-                this.Student = response.data;
-                console.log(this.Student)
-      })
+    
     }
 
 }

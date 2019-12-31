@@ -10,7 +10,7 @@
       </ul>
       <ul class="navbar-nav my-2 my-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Çıkış Yap</a>
+          <a @click="$router.push('/Login')" class="nav-link" >Çıkış Yap</a>
         </li>
       </ul>
     </div>
@@ -22,3 +22,8 @@ export default {
     
 }
 </script>
+<style scoped>
+.nav-link{
+  cursor: pointer;
+}
+</style>>
