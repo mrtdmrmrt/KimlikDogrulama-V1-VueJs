@@ -34,13 +34,16 @@ export default {
       return {
         user: {
                 id:null,
-                courseCode:null,
-                courseName:null,
-                absenceLimit:null,
+                //courseCode:null,
+                //courseName:null,
+                //absenceLimit:null,
                 userName: null,
                 password: null,
                 name : null,
               },
+        userCourse:[],
+        
+
         error : true,
         Teacher : [],
         Course:[],
@@ -52,24 +55,25 @@ export default {
       auth(){
           this.Teacher.forEach(element => {
               if(element.kullanici_adi == this.user.userName && element.sifre == this.user.password){
+                this.user.name = element.adi_soyadi
+                this.user.userName = element.kullanici_adi
+                this.user.password = element.sifre
                     this.TeacherCourse.forEach(tc => {
                         if(tc.ogretmen_id == element.id){
+                         this.user.id = tc.ogretmen_id
                             this.Course.forEach(c => {
                                 if(c.ders_kodu == tc.ders_kodu){
-                                    this.user.name = element.adi_soyadi
-                                    this.user.userName = element.kullanici_adi
-                                    this.user.password = element.sifre
-                                    this.user.id = tc.ogretmen_id
-                                    this.user.courseCode = c.ders_kodu
-                                    this.user.courseName = c.ders_adi
-                                    this.user.absenceLimit = c.devam_siniri
-                                    this.$store.dispatch("addAuth",this.user)
-                                    this.$router.push("/Teacher")
+                                    this.userCourse = c
+                                    this.$store.dispatch("addCourse",this.userCourse)
+                                    
                                 }
-                            });
+                                
+                          });
                             
-                        }
-                    });
+                    }
+                  });
+                  this.$store.dispatch("addAuth",this.user)
+                  this.$router.push("/Teacher")
                     
                 }
                 else{

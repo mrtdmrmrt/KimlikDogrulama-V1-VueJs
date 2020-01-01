@@ -46,8 +46,39 @@ export default {
             console.log(this.absenceLimit)
             console.log(this.id)
             if(this.courseCode !== "" && this.courseName !== "" && this.absenceLimit !== ""){
-               
                 console.log("add")
+                /*
+               axios({
+                method: 'post',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    url: 'http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ders',
+                    data: { 
+                        ders_kodu: this.courseCode,
+                        ders_adi:this.courseName,
+                        devam_siniri:this.absenceLimit
+                        }
+                    }).then(function (response) {
+                console.log(response.data);
+                }) .catch(function(error){
+                    console.log(error);
+                });
+                axios({
+                    method: 'post',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    url: 'http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ogretmen_ders',
+                    data: { 
+                        ders_kodu: this.courseCode,
+                        ogretmen_id : this.id
+                        }
+                    }).then(function (response) {
+                    console.log(response.data);
+                    })
+                     .catch(function(error){
+                    console.log(error);
+                });
+                */
+               /*
+                
                 axios.post("http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ders",{ 
                     ders_kodu: this.courseCode,
                     ders_adi:this.courseName,
@@ -71,6 +102,40 @@ export default {
                 .catch(function(error){
                     console.log(error);
                 });
+                */
+               const headers = {
+                    'Content-Type': 'text/plain'
+                };
+    /*
+                axios.post(
+                    'http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ogretmen_ders&ders_kodu='+this.courseCode+'&ogretmen_id='+this.id,
+                    {
+                        ders_kodu: this.courseCode,
+                        ogretmen_id : this.id
+                    },
+                    {headers}
+                    ).then(response => {
+                        console.log("Success ========>", response);
+                    })
+                    .catch(error => {
+                        console.log("Error ========>", error);
+                    }
+                )*/
+                axios.post(
+                    'http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ders&ders_kodu='+this.courseCode+'&ders_adi='+this.courseName+'&devam_siniri='+this.absenceLimit,
+                    {
+                        ders_kodu: this.courseCode,
+                        ders_adi:this.courseName,
+                        devam_siniri:this.absenceLimit
+                    },
+                    {headers}
+                    ).then(response => {
+                        console.log("Success ========>", response);
+                    })
+                    .catch(error => {
+                        console.log("Error ========>", error);
+                    }
+                )
             }
         }
      }
