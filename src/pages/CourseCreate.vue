@@ -106,7 +106,7 @@ export default {
                const headers = {
                     'Content-Type': 'text/plain'
                 };
-    /*
+                //ogretmen_ders tablosuna veri ekleme
                 axios.post(
                     'http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ogretmen_ders&ders_kodu='+this.courseCode+'&ogretmen_id='+this.id,
                     {
@@ -119,8 +119,8 @@ export default {
                     })
                     .catch(error => {
                         console.log("Error ========>", error);
-                    }
-                )*/
+                    })
+                //ders tablosuna veri ekleme
                 axios.post(
                     'http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ders&ders_kodu='+this.courseCode+'&ders_adi='+this.courseName+'&devam_siniri='+this.absenceLimit,
                     {
@@ -134,8 +134,7 @@ export default {
                     })
                     .catch(error => {
                         console.log("Error ========>", error);
-                    }
-                )
+                    })
             }
         }
      }
