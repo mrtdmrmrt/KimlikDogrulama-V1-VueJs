@@ -4,19 +4,21 @@
      <table class="table table-hover">
     <thead>
       <tr>
-        <th>Numarası</th>
-        <th>Adı Soyadı</th>
-         <th>Devamsızlık Gün</th>
-        <th>Devam</th>
+        
+        <th>Ders Kodu</th>
+        <th>Ders Adı</th>
+        <th>Devam Sınırı</th>
+        <th>Geldi/Gelmedi</th>
       </tr>
     </thead>
-    <tbody v-for=" (data,key) in vuexgetAuth" :key="key" >
+    <tbody v-for=" (data,key) in vuexgetCourse" :key="key" >
       <tr>
-        <td>{{data.ogrNo}}</td>
-        <td >{{data.name}}</td>
-         <td >{{data.discontinuity}}</td>
+        <td>{{data.ders_kodu}}</td>
+        <td>{{data.ders_adi}}</td>
+        <td >{{data.devam_siniri}}</td>
+         
         <td>
-          <i v-if=" data.discontinuity >= '4'" class="fa fa-times-circle"></i>
+          <i v-if=" data.discontinuityCout >= '4'" class="fa fa-times-circle"></i>
           <i v-else class="fas fa-check-circle"></i>
            
         </td>
@@ -40,13 +42,16 @@ export default {
         vuexgetAuth(){
            return this.$store.getters.getAuth
            
-        }
+        },
+        vuexgetCourse(){
+        return this.$store.getters.getCourse
+      }
     },
     methods : {
         
     },
     created (){
-    
+      console.log(this.vuexgetAuth)
     }
 
 }

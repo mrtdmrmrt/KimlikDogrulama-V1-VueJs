@@ -72,6 +72,7 @@ export default {
                             
                     }
                   });
+                  console.log(this.user.id)
                   this.$store.dispatch("addAuth",this.user)
                   this.$router.push("/Teacher")
                     

@@ -37,71 +37,105 @@ export default {
                 ogrNo: null,
                 password: null,
                 name : null,
-                discontinuity:null
+                discontinuity:null,
+                discontinuityCount:null,
+                discontinuityLimit:null
+
               },
+              userCourse :[],
+              userGetCourse:[],
         error : true,
         Teacher : [],
         Student : [],
-        Discontinuity : []
+        Discontinuity : [],
+        Course : [],
+        count:0
         
       }
     },
     methods : {
       auth(){
-        /*
-        this.Login.forEach(e => {
-          if(this.user.kullaniciAdi == e.userName && this.user.password == e.password ){
-            this.Student.forEach(s => {
-              if(s.id == e.studentID){
-                this.user.name = s.name
-                this.user.surname = s.surname
-                this.user.devam = s.devam
-                this.user.studentID = e.studentID
-                this.$store.dispatch("addAuth",this.user)
-              }
-            });
-            if(e.status == "1"){
-                this.$router.push("/Teacher")
-              }
-              else{
-                this.$router.push("/Student")
-              }
-          }
-            
-          else{
-            this.error = false
-          }
-        });
-        */
+         /*
+       this.Student.forEach(element => {
+              if(element.ogrenci_no == this.user.ogrNo && element.sifre == this.user.password){
+                this.user.name = element.adi_soyadi
+                this.user.ogrNo = element.ogrenci_no
+                this.user.password = element.sifre
+                    this.Discontinuity.forEach(d=> {
+                      console.log('Donguye girdi')
+                    if(d.ogrenci_no == this.user.ogrNo){
+                      this.user.discontinuity = d.devam
+                            this.Course.forEach(c => {
+                              console.log('Courseye girdi')
+                                if(c.ders_kodu == d.ders_kodu){
+                                  console.log('ders_kodu')
+                                    this.userCourse = c
+                                    this.user.discontinuityCount = d.devam.count()
+                                    this.$store.dispatch("addCourse",this.userCourse)
+                                    
+                                }
+                                
+                          });
+                      }
+                  });
+                
+                  
+                  this.$store.dispatch("addAuth",this.user)
+                  this.$router.push("/Student")
+                    
+                }
+                else{
+                    this.error = false
+                }
+          });
+         */
         this.Student.forEach(element => {
+          console.log('Donguye girdi')
         if(element.ogrenci_no == this.user.ogrNo && element.sifre == this.user.password){
           this.user.name = element.adi_soyadi
           this.user.ogrNo = element.ogrenci_no
           this.user.password = element.sifre
           this.Discontinuity.forEach(d => {
-            if(d.ogrenci_no == this.user.ogrNo){
-              this.user.discontinuity = d.devam
-            }
-            this.user.discontinuity=5
+           this.Course.forEach(c => {
+             if(d.ogrenci_no == this.user.ogrNo){
+                 this.user.discontinuity = d.devam
+                if(c.ders_kodu == d.ders_kodu ){
+                  this.userCourse = c
+                  this.count++;
+                  this.user.discontinuityCount = this.count
+                  this.$store.dispatch("addCourse",this.userCourse)
+              }
+             }
+              
+            });
           });
+         
+          
           this.$store.dispatch("addAuth",this.user)
           this.$router.push("/Student")
         }
          else{
             this.error = false
           }
-      });
+      })
+       
       }
       
      
     },
     created(){
-     
-      this.getStudent()
+     this.getStudent()
 			.then(response => {
         this.Student = response.data;
-       
+        console.log(this.Student)
       })
+
+      this.getCourse()
+			.then(response => {
+        this.Course = response.data;
+        console.log(this.Course)
+      })
+      
       this.getDiscontinuity()
 			.then(response => {
         this.Discontinuity = response.data;

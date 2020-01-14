@@ -122,7 +122,7 @@ export default {
                     })
                 //ders tablosuna veri ekleme
                 axios.post(
-                    'http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ders&ders_kodu='+this.courseCode+'&ders_adi='+this.courseName+'&devam_siniri='+this.absenceLimit,
+                    'http://sisyshell.com/castdb/webservis.php?islem=ekle&tablo=ders&ders_kodu='+this.courseCode+'&ders_adi='+this.courseName+'&devam_siniri='+this.absenceLimit+'&durum='+0,
                     {
                         ders_kodu: this.courseCode,
                         ders_adi:this.courseName,
